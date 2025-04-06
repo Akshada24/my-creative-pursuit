@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolution Tales | A Journey from Primates to AI Humanity</title>
+    <meta name="description" content="Explore the journey of human evolution through captivating stories and podcasts. From our primate origins to our AI-enhanced future.">
+    <meta name="keywords" content="evolution stories, human evolution, AI stories, short stories, evolution podcasts, human journey, primate to human">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Quicksand:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #3a7d7d;
+            --secondary-color: #f9c846;
+            --accent-color: #ff6b6b;
+            --dark-color: #2d3748;
+            --light-color: #f7fafc;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            background-color: var(--light-color);
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-section {
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), 
+                url('humans.png') center/cover no-repeat;
+    height: 100vh;
+}
+
+
+        
+        .timeline-section {
+            background: url('/api/placeholder/1920/1080') fixed center/cover no-repeat;
+            position: relative;
+        }
+        
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.5) 100%);
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 50px;
+            opacity: 0.5;
+            transition: all 0.5s ease;
+        }
+        
+        .timeline-item.active {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 30px);
+            background-color: var(--primary-color);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .story-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .story-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 100%);
+            z-index: 1;
+        }
+        
+        .story-card-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .podcast-player {
+            background: url('/api/placeholder/1920/400') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .podcast-player::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1;
+        }
+        
+        .podcast-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: var(--light-color);
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            width: 30%;
+            background: var(--secondary-color);
+            border-radius: 3px;
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        .neumorph {
+            border-radius: 1.5rem;
+            background: var(--light-color);
+            box-shadow: 
+                20px 20px 60px rgba(0, 0, 0, 0.1),
+                -20px -20px 60px rgba(255, 255, 255, 0.8);
+        }
+        
+        .blob {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.3;
+            filter: blur(40px);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .timeline-item {
+                padding-left: 30px;
+            }
+            
+            .timeline-item::before {
+                width: 15px;
+                height: 15px;
+            }
+            
+            .timeline-item::after {
+                left: 7px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* Reader styles */
+        .reader-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 100;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .reader-container {
+            max-width: 800px;
+            width: 100%;
+            height: 80vh;
+            background-color: var(--light-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .reader-header {
+            padding: 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .reader-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .reader-footer {
+            padding: 1rem;
+            background-color: var(--light-color);
+            border-top: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="mainNav">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-white flex items-center space-x-2">
+                <span class="text-gradient bg-white p-1 rounded">Evolution</span>
+                <span>Tales</span>
+            </a>
+            <div class="hidden md:flex space-x-10 text-white">
+                <a href="#home" class="hover:text-secondary-color transition-colors">Home</a>
+                <a href="#timeline" class="hover:text-secondary-color transition-colors">Evolution</a>
+                <a href="#stories" class="hover:text-secondary-color transition-colors">Stories</a>
+                <a href="#podcast" class="hover:text-secondary-color transition-colors">Podcast</a>
+                <a href="#about" class="hover:text-secondary-color transition-colors">About</a>
+            </div>
+            <button class="block md:hidden text-white text-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 bg-dark-color bg-opacity-95 z-40 transform translate-x-full transition-transform duration-300" id="mobileMenu">
+        <div class="flex justify-end p-6">
+            <button class="text-white text-xl" id="closeMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col items-center space-y-8 text-white text-xl mt-10">
+            <a href="#home" class="hover:text-secondary-color transition-colors">Home</a>
+            <a href="#timeline" class="hover:text-secondary-color transition-colors">Evolution</a>
+            <a href="#stories" class="hover:text-secondary-color transition-colors">Stories</a>
+            <a href="#podcast" class="hover:text-secondary-color transition-colors">Podcast</a>
+            <a href="#about" class="hover:text-secondary-color transition-colors">About</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section flex items-center justify-center relative">
+        <div class="container mx-auto px-6 text-center text-white hero-text">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate__animated animate__fadeInDown">Evolution Tales</h1>
+            <p class="text-xl md:text-2xl mb-10 animate__animated animate__fadeInUp animate__delay-1s max-w-3xl mx-auto">
+                Journey through time from our primate ancestors to our AI-enhanced future through captivating stories and immersive podcasts.
+            </p>
+            <div class="flex justify-center space-x-6 animate__animated animate__fadeInUp animate__delay-2s">
+                <a href="#stories" class="bg-primary-color hover:bg-opacity-80 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
+                    Explore Stories
+                </a>
+                <a href="#podcast" class="bg-transparent border-2 border-white hover:bg-white hover:text-dark-color text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
+                    Listen Podcasts
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Evolution Timeline Section -->
+    <section id="timeline" class="timeline-section py-20">
+        <div class="container mx-auto px-6 timeline-content">
+            <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center">The Human <span class="text-gradient">Evolution</span> Journey</h2>
+            
+            <div class="timeline-container max-w-4xl mx-auto">
+                <div class="timeline-item" data-year="7 Million Years Ago">
+                    <h3 class="text-2xl font-bold mb-3">Early Hominids</h3>
+                    <p class="text-lg mb-4">The first steps of our journey began with early hominids, separating from other primates and developing unique traits.</p>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg overflow-hidden mb-4">
+                        <img src="/api/placeholder/600/300" alt="Early Hominids" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-year="2.8 Million Years Ago">
+                    <h3 class="text-2xl font-bold mb-3">Homo Habilis</h3>
+                    <p class="text-lg mb-4">The first species of the genus Homo emerged, creating and using stone tools that would change our path forever.</p>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg overflow-hidden mb-4">
+                        <img src="/api/placeholder/600/300" alt="Homo Habilis" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-year="1.8 Million Years Ago">
+                    <h3 class="text-2xl font-bold mb-3">Homo Erectus</h3>
+                    <p class="text-lg mb-4">With improved posture and larger brains, Homo Erectus spread across continents, mastering fire and developing more complex tools.</p>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg overflow-hidden mb-4">
+                        <img src="/api/placeholder/600/300" alt="Homo Erectus" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-year="300,000 Years Ago">
+                    <h3 class="text-2xl font-bold mb-3">Homo Sapiens</h3>
+                    <p class="text-lg mb-4">Modern humans emerged in Africa, with advanced cognitive abilities, language, and creativity that would transform the planet.</p>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg overflow-hidden mb-4">
+                        <img src="/api/placeholder/600/300" alt="Homo Sapiens" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-year="10,000 Years Ago">
+                    <h3 class="text-2xl font-bold mb-3">Agricultural Revolution</h3>
+                    <p class="text-lg mb-4">Humans transition from nomadic hunter-gatherers to settled agricultural communities, leading to civilization.</p>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg overflow-hidden mb-4">
+                        <img src="/api/placeholder/600/300" alt="Agricultural Revolution" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-year="Present Day">
+                    <h3 class="text-2xl font-bold mb-3">AI Integration</h3>
+                    <p class="text-lg mb-4">Humans begin to integrate artificial intelligence into daily life, extending capabilities and exploring new frontiers of consciousness.</p>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg overflow-hidden mb-4">
+                        <img src="/api/placeholder/600/300" alt="AI Integration" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-year="Future">
+                    <h3 class="text-2xl font-bold mb-3">The Next Chapter</h3>
+                    <p class="text-lg mb-4">What lies ahead in our evolutionary journey? Will AI become a tool for unprecedented growth or a new branch in our evolution?</p>
+                    <div class="w-full h-48 bg-gray-200 rounded-lg overflow-hidden mb-4">
+                        <img src="/api/placeholder/600/300" alt="The Future" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories Section -->
+    <section id="stories" class="py-20 bg-light-color relative">
+        <!-- Decorative blobs -->
+        <div class="blob bg-primary-color h-64 w-64 rounded-full absolute top-20 left-0"></div>
+        <div class="blob bg-secondary-color h-96 w-96 rounded-full absolute bottom-20 right-0"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center">Immersive <span class="text-gradient">Stories</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Story Card 1 -->
+                <div class="story-card h-96 cursor-pointer" data-story="1">
+                    <img src="/api/placeholder/600/800" alt="The First Tool" class="w-full h-full object-cover">
+                    <div class="story-card-content absolute bottom-0 left-0 p-6 text-white">
+                        <span class="bg-primary-color px-3 py-1 rounded-full text-sm mb-3 inline-block">Early Hominids</span>
+                        <h3 class="text-2xl font-bold mb-2">The First Tool</h3>
+                        <p class="mb-4">How a young hominid's discovery changed the course of human evolution forever.</p>
+                        <button class="bg-white text-dark-color hover:bg-secondary-color hover:text-white px-4 py-2 rounded-full transition-colors">
+                            Read Story
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Story Card 2 -->
+                <div class="story-card h-96 cursor-pointer" data-story="2">
+                    <img src="/api/placeholder/600/800" alt="Fire Keepers" class="w-full h-full object-cover">
+                    <div class="story-card-content absolute bottom-0 left-0 p-6 text-white">
+                        <span class="bg-primary-color px-3 py-1 rounded-full text-sm mb-3 inline-block">Homo Erectus</span>
+                        <h3 class="text-2xl font-bold mb-2">Fire Keepers</h3>
+                        <p class="mb-4">A tribe's struggle to master the power of fire and its profound impact on their survival.</p>
+                        <button class="bg-white text-dark-color hover:bg-secondary-color hover:text-white px-4 py-2 rounded-full transition-colors">
+                            Read Story
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Story Card 3 -->
+                <div class="story-card h-96 cursor-pointer" data-story="3">
+                    <img src="/api/placeholder/600/800" alt="Cave Paintings" class="w-full h-full object-cover">
+                    <div class="story-card-content absolute bottom-0 left-0 p-6 text-white">
+                        <span class="bg-primary-color px-3 py-1 rounded-full text-sm mb-3 inline-block">Homo Sapiens</span>
+                        <h3 class="text-2xl font-bold mb-2">Cave Paintings</h3>
+                        <p class="mb-4">The birth of art and storytelling through the eyes of an ancient cave painter.</p>
+                        <button class="bg-white text-dark-color hover:bg-secondary-color hover:text-white px-4 py-2 rounded-full transition-colors">
+                            Read Story
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Story Card 4 -->
+                <div class="story-card h-96 cursor-pointer" data-story="4">
+                    <img src="/api/placeholder/600/800" alt="Agricultural Dreams" class="w-full h-full object-cover">
+                    <div class="story-card-content absolute bottom-0 left-0 p-6 text-white">
+                        <span class="bg-primary-color px-3 py-1 rounded-full text-sm mb-3 inline-block">Early Civilization</span>
+                        <h3 class="text-2xl font-bold mb-2">Agricultural Dreams</h3>
+                        <p class="mb-4">How a radical idea to grow food instead of hunt for it changed human society forever.</p>
+                        <button class="bg-white text-dark-color hover:bg-secondary-color hover:text-white px-4 py-2 rounded-full transition-colors">
+                            Read Story
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Story Card 5 -->
+                <div class="story-card h-96 cursor-pointer" data-story="5">
+                    <img src="/api/placeholder/600/800" alt="Digital Minds" class="w-full h-full object-cover">
+                    <div class="story-card-content absolute bottom-0 left-0 p-6 text-white">
+                        <span class="bg-primary-color px-3 py-1 rounded-full text-sm mb-3 inline-block">Modern Era</span>
+                        <h3 class="text-2xl font-bold mb-2">Digital Minds</h3>
+                        <p class="mb-4">The story of artificial intelligence's birth and its complex relationship with humanity.</p>
+                        <button class="bg-white text-dark-color hover:bg-secondary-color hover:text-white px-4 py-2 rounded-full transition-colors">
+                            Read Story
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Story Card 6 -->
+                <div class="story-card h-96 cursor-pointer" data-story="6">
+                    <img src="/api/placeholder/600/800" alt="Beyond Human" class="w-full h-full object-cover">
+                    <div class="story-card-content absolute bottom-0 left-0 p-6 text-white">
+                        <span class="bg-primary-color px-3 py-1 rounded-full text-sm mb-3 inline-block">Future</span>
+                        <h3 class="text-2xl font-bold mb-2">Beyond Human</h3>
+                        <p class="mb-4">A speculative tale of what humanity might become as we co-evolve with our AI creations.</p>
+                        <button class="bg-white text-dark-color hover:bg-secondary-color hover:text-white px-4 py-2 rounded-full transition-colors">
+                            Read Story
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="#" class="inline-block bg-primary-color hover:bg-opacity-80 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
+                    View All Stories
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcast Section -->
+    <section id="podcast" class="podcast-player py-20">
+        <div class="container mx-auto px-6 podcast-content">
+            <h2 class="text-4xl md:text-5xl font-bold mb-16 text-center text-white">Evolution <span class="text-secondary-color">Podcasts</span></h2>
+            
+            <div class="neumorph p-6 md:p-10 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row md:items-center space-y-6 md:space-y-0 md:space-x-6">
+                    <div class="w-full md:w-1/3">
+                        <img src="/api/placeholder/400/400" alt="Podcast Cover" class="w-full h-auto rounded-lg shadow-lg">
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <h3 class="text-2xl font-bold mb-2">Early Tools & Language Evolution</h3>
+                        <p class="text-gray-700 mb-4">Episode 4: How early tool use may have influenced the development of human language and abstract thought.</p>
+                        
+                        <div class="flex items-center space-x-4 mb-6">
+                            <button class="bg-primary-color hover:bg-opacity-80 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all transform hover:scale-105">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </button>
+                            <div class="w-full">
+                                <div class="progress-bar mb-2">
+                                    <div class="progress"></div>
+                                </div>
+                                <div class="flex justify-between text-sm text-gray-600">
+                                    <span>12:34</span>
+                                    <span>45:21</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                            <button class="bg-gray-200 hover:bg-gray-300 p-2 rounded-full transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </button>
+                            <button class="bg-gray-200 hover:bg-gray-300 p-2 rounded-full transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                </svg>
+                            </button>
+                            <button class="bg-gray-200 hover:bg-gray-300 p-2 rounded-full transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2
+                                    d="M15 17h5l-1.405 1.405A2.002 2.002 0 0117.586 21H6a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v12z" />
+
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7h5l-1.405 1.405A2.002 2.002 0 0117.586 11H6a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v12z" />
+                                </svg>
+                            </button>
+                            <button class="bg-gray-200 hover:bg-gray-300 p-2 rounded-full transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405 1.405A2.002 2.002 0 0117.586 21H6a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v12z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center mt-10">
+                    <a href="#" class="bg-secondary-color hover:bg-opacity-80 text-white font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105">
+                        View All Podcasts
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->

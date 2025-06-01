@@ -4,19 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Evolution Story Previewer</title>
-  <meta name="description" content="Preview your story in a PDF-style viewer using Tailwind CSS." />
+  <title>Story Reader</title>
+  <meta name="description" content="A PDF-style page-by-page story reader" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Playfair+Display:wght@700&display=swap"
     rel="stylesheet" />
-
   <style>
     :root {
       --primary: #3b2c41;
       --secondary: #b86a35;
-      --light-accent: #f7f3e9;
-      --text: #2d2d2d;
     }
 
     body {
@@ -29,22 +26,33 @@
     }
 
     .pdf-container {
-      font-family: 'Georgia', serif;
+      font-family: Georgia, serif;
     }
   </style>
 </head>
 
 <body class="bg-gray-100 text-gray-800 p-6 flex flex-col items-center space-y-6 min-h-screen">
 
-  <h1 class="text-4xl font-bold story-title">Evolution Story Previewer</h1>
+  <h1 class="text-4xl font-bold story-title">The Odd Man Out</h1>
 
-  <!-- Story Input -->
-  <div class="w-full max-w-4xl space-y-4">
-    <label for="storyInput" class="block text-lg font-semibold">Write Your Story:</label>
-    <textarea id="storyInput" rows="10" placeholder="Type your story here..."
-      class="w-full p-4 border border-gray-300 rounded resize-y focus:outline-none focus:ring-2 focus:ring-secondary">
-    
-                                                             The Odd Man Out
+  <!-- Simulated PDF Page -->
+  <div
+    class="pdf-container w-full max-w-3xl aspect-[3/4] bg-white p-8 shadow-xl rounded border border-gray-300 overflow-hidden text-lg leading-relaxed whitespace-pre-line"
+    id="storyPage">
+    <!-- Page content appears here -->
+  </div>
+
+  <!-- Controls -->
+  <div class="flex space-x-4">
+    <button id="prevPage" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500 transition">Previous</button>
+    <span id="pageIndicator" class="self-center font-semibold text-gray-700"></span>
+    <button id="nextPage" class="bg-yellow-700 text-white px-4 py-2 rounded hover:bg-yellow-800 transition">Next</button>
+  </div>
+
+  <script>
+    const story = `
+   
+                                                            The Odd Man Out
 
 Year 2008
 Rain hit the window as she put her forehead on the cool glass. She watched children playing on the street below. Some hid under umbrellas, while others played in the rain, laughing as water hit the ground.
@@ -226,31 +234,39 @@ ________________________________________
 The interview continued, but something had changed in her expression—a depth and warmth that hadn't been visible before, as if sharing that story had reconnected her with something essential within herself.
 
 
-    </textarea>
-    <button id="showStoryBtn"
-      class="bg-yellow-700 text-white px-6 py-2 rounded hover:bg-yellow-800 transition">Preview Story</button>
-  </div>
+    `;
 
-  <!-- Simulated PDF Page -->
-  <div id="storyDisplay"
-    class="hidden pdf-container w-full max-w-3xl aspect-[3/4] bg-white p-8 shadow-xl rounded border border-gray-300 overflow-y-auto whitespace-pre-wrap text-lg leading-relaxed">
-    <!-- Story will appear here -->
-  </div>
+    const pages = story.trim().split(/\n\s*\n/); // Split on empty lines
+    let currentPage = 0;
 
-  <script>
-    const btn = document.getElementById('showStoryBtn');
-    const input = document.getElementById('storyInput');
-    const display = document.getElementById('storyDisplay');
+    const storyPage = document.getElementById('storyPage');
+    const pageIndicator = document.getElementById('pageIndicator');
+    const prevBtn = document.getElementById('prevPage');
+    const nextBtn = document.getElementById('nextPage');
 
-    btn.addEventListener('click', () => {
-      const story = input.value.trim();
-      if (!story) {
-        alert('Please write your story first.');
-        return;
+    function renderPage() {
+      storyPage.textContent = pages[currentPage];
+      pageIndicator.textContent = `Page ${currentPage + 1} of ${pages.length}`;
+      prevBtn.disabled = currentPage === 0;
+      nextBtn.disabled = currentPage === pages.length - 1;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--;
+        renderPage();
       }
-      display.textContent = story;
-      display.classList.remove('hidden');
     });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        renderPage();
+      }
+    });
+
+    // Initial render
+    renderPage();
   </script>
 </body>
 

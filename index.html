@@ -24,7 +24,7 @@ body {
     color: var(--text);
     background-color: white;
     position: relative;
-    padding: 10px;
+    padding: 20px;
     box-sizing: border-box;
 }
 
@@ -35,7 +35,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    border: 10px solid transparent;
+    border: 20px solid transparent;
     border-image: linear-gradient(to right, 
         rgba(45, 45, 45, 0.2), 
         rgba(75, 75, 75, 0.2), 
@@ -122,22 +122,22 @@ body::before {
       Akshada<span style="color: var(--secondary);">Pawar</span>
     </a>
 
-    <!-- Hamburger Icon (Mobile only) -->
+    <!-- Hamburger Button -->
     <button id="menu-toggle" class="md:hidden text-3xl focus:outline-none">
       ☰
     </button>
-
-    <!-- Navigation Menu -->
-    <nav id="nav-menu" class="hidden md:block">
-      <ul class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8 mt-4 md:mt-0">
-        <li><a href="#" class="menu-item font-medium">Home</a></li>
-        <li><a href="/stories.html" class="menu-item font-medium">Stories</a></li>
-        <li><a href="#" class="menu-item font-medium">Collections</a></li>
-        <li><a href="#" class="menu-item font-medium">About</a></li>
-        <li><a href="#" class="menu-item font-medium">Contact</a></li>
-      </ul>
-    </nav>
   </div>
+
+  <!-- Nav Menu -->
+  <nav id="nav-menu" class="hidden md:flex flex-col md:flex-row bg-white md:bg-transparent px-4 md:px-0 mt-4 md:mt-0 space-y-4 md:space-y-0 md:space-x-8 transition-all duration-300 ease-in-out">
+    <ul class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
+      <li><a href="#" class="menu-item font-medium">Home</a></li>
+      <li><a href="/stories.html" class="menu-item font-medium">Stories</a></li>
+      <li><a href="#" class="menu-item font-medium">Collections</a></li>
+      <li><a href="#" class="menu-item font-medium">About</a></li>
+      <li><a href="#" class="menu-item font-medium">Contact</a></li>
+    </ul>
+  </nav>
 </header>
 
 <script>
@@ -148,6 +148,7 @@ body::before {
     menu.classList.toggle("hidden");
   });
 </script>
+
 
 
     <!-- Main content -->
@@ -183,7 +184,7 @@ body::before {
                         
                         <!-- Card 2 -->
                         <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-1">
-                            <img src="oddman.png" alt="Digital Revolution" class="w-full h-98 object-cover">
+                            <img src="img1.jpeg" alt="Digital Revolution" class="w-full h-98 object-cover">
                             <div class="p-4">
                                 <!-- <h3 class="font-semibold text-lg mb-2">Digital Revolution</h3> -->
                                 <p class="text-gray-600 text-sm">9 stories about the technological transformation reshaping our world.</p>

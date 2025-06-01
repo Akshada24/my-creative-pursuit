@@ -11,86 +11,106 @@
         href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Dancing+Script:wght@700&display=swap"
         rel="stylesheet">
     <style>
-        :root {
-            --primary: #3b2c41;
-            --secondary: #b86a35;
-            --light-accent: #f7f3e9;
-            --dark-accent: #1f1a25;
-            --text: #2d2d2d;
-        }
+      :root {
+    --primary: #3b2c41;
+    --secondary: #b86a35;
+    --light-accent: #f7f3e9;
+    --dark-accent: #1f1a25;
+    --text: #2d2d2d;
+}
 
-        body {
-            font-family: 'Nunito', sans-serif;
-            color: var(--text);
-            background-color: white;
-        }
+body {
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    background-color: white;
+    position: relative;
+    padding: 100px;
+    box-sizing: border-box;
+}
 
-        .story-title {
-            font-family: 'Playfair Display', serif;
-        }
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 100px solid transparent;
+    border-image: linear-gradient(to right, 
+        rgba(45, 45, 45, 0.2), 
+        rgba(75, 75, 75, 0.2), 
+        rgba(45, 45, 45, 0.2)
+    ) 1;
+    border-image-slice: 100;
+    pointer-events: none;
+    z-index: 10;
+}
 
-        .logo-text {
-            font-family: 'Dancing Script', cursive;
-        }
+.story-title {
+    font-family: 'Playfair Display', serif;
+}
 
-        .story-card {
-            transition: transform 0.2s ease;
-            height: 420px;
-        }
+.logo-text {
+    font-family: 'Dancing Script', cursive;
+}
 
-        .story-card:hover {
-            transform: translateY(-5px);
-        }
+.story-card {
+    transition: transform 0.2s ease;
+    height: 420px;
+}
 
-        .feature-card {
-            height: 500px;
-        }
+.story-card:hover {
+    transform: translateY(-5px);
+}
 
-        .list-card {
-            height: 180px;
-        }
+.feature-card {
+    height: 500px;
+}
 
-        .gradient-overlay {
-            background: linear-gradient(to bottom,
-                    rgba(0, 0, 0, 0) 0%,
-                    rgba(0, 0, 0, 0.5) 50%,
-                    rgba(0, 0, 0, 0.85) 100%);
-        }
+.list-card {
+    height: 180px;
+}
 
-        .menu-item {
-            position: relative;
-        }
+.gradient-overlay {
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 0, 0, 0.85) 100%);
+}
 
-        .menu-item:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--secondary);
-            transition: width 0.3s;
-        }
+.menu-item {
+    position: relative;
+}
 
-        .menu-item:hover:after {
-            width: 100%;
-        }
+.menu-item:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--secondary);
+    transition: width 0.3s;
+}
 
-        @media (prefers-reduced-motion: reduce) {
+.menu-item:hover:after {
+    width: 100%;
+}
 
-            .story-card,
-            .menu-item:after {
-                transition: none;
-            }
-
-            .story-card:hover {
-                transform: none;
-            }
-
-            .menu-item:hover:after {
-                width: 0;
-            }
-        }
+@media (prefers-reduced-motion: reduce) {
+    .story-card,
+    .menu-item:after {
+        transition: none;
+    }
+    
+    .story-card:hover {
+        transform: none;
+    }
+    
+    .menu-item:hover:after {
+        width: 0;
+    }
+}
     </style>
 </head>
 
@@ -104,7 +124,7 @@
             <nav>
                 <ul class="flex space-x-8">
                     <li><a href="#" class="menu-item font-medium">Home</a></li>
-                    <li><a href="#" class="menu-item font-medium">Stories</a></li>
+                    <li><a href="/stories.html" class="menu-item font-medium">Stories</a></li>
                     <li><a href="#" class="menu-item font-medium">Collections</a></li>
                     <li><a href="#" class="menu-item font-medium">About</a></li>
                     <li><a href="#" class="menu-item font-medium">Contact</a></li>
@@ -126,570 +146,87 @@
                     <div class="flex items-center justify-between mb-8">
                         <h3 class="text-2xl font-bold story-title relative tracking-tight"
                             style="color: var(--primary);">
-                            Trending Now Categories
+                            Trending Stories
                             <span class="absolute -bottom-2 left-0 w-16 h-1"
                                 style="background-color: var(--secondary);"></span>
                         </h3>
-                        <div class="flex space-x-2">
-                            <button class="p-2 rounded-full bg-white shadow-sm transition-all hover:shadow-md"
-                                aria-label="Previous" style="color: var(--primary);">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 19l-7-7 7-7" />
-                                </svg>
-                            </button>
-                            <button class="p-2 rounded-full bg-white shadow-sm transition-all hover:shadow-md"
-                                aria-label="Next" style="color: var(--primary);">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 5l7 7-7 7" />
-                                </svg>
-                            </button>
+                    
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Card 1 -->
+                       <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-1">
+                            <img src="oddman.png" alt="Digital Revolution" class="w-full h-98 object-cover">
+                            <div class="p-4">
+                                <!-- <h3 class="font-semibold text-lg mb-2">Digital Revolution</h3> -->
+                                <p class="text-gray-600 text-sm">9 stories about the technological transformation reshaping our world.</p>
+                                <a href="#" class="inline-block mt-2 text-indigo-600 hover:text-indigo-700 text-sm font-medium">Read More →</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 2 -->
+                        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-1">
+                            <img src="oddman.png" alt="Digital Revolution" class="w-full h-98 object-cover">
+                            <div class="p-4">
+                                <!-- <h3 class="font-semibold text-lg mb-2">Digital Revolution</h3> -->
+                                <p class="text-gray-600 text-sm">9 stories about the technological transformation reshaping our world.</p>
+                                <a href="#" class="inline-block mt-2 text-indigo-600 hover:text-indigo-700 text-sm font-medium">Read More →</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 3 -->
+                       <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-1">
+                            <img src="oddman.png" alt="Digital Revolution" class="w-full h-98 object-cover">
+                            <div class="p-4">
+                                <!-- <h3 class="font-semibold text-lg mb-2">Digital Revolution</h3> -->
+                                <p class="text-gray-600 text-sm">15 captivating stories exploring the technological transformation reshaping our world. Discover how emerging technologies are revolutionizing society, business, and human potential.</p>
+                                <a href="#" class="inline-block mt-2 text-indigo-600 hover:text-indigo-700 text-sm font-medium">Read More →</a>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <!-- Category 1 -->
-                        <a href="#" class="group">
-                            <div class="relative rounded-xl overflow-hidden shadow-lg h-96">
-                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                                    alt="Digital Revolution"
-                                    class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent">
-                                </div>
-                                <div class="absolute top-4 right-4">
-                                    <span
-                                        class="px-3 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider"
-                                        style="background-color: var(--secondary); color: white;">Hot Topic</span>
-                                </div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <h4
-                                        class="text-white font-bold text-xl story-title mb-1 tracking-tight leading-tight">
-                                        Digital Revolution</h4>
-                                    <p class="text-white text-xs opacity-90 font-medium">9 stories</p>
-                                </div>
-                            </div>
-                        </a>
-
-                        <!-- Category 2 -->
-                        <a href="#" class="group">
-                            <div class="relative rounded-xl overflow-hidden shadow-lg h-96">
-                                <img src="https://images.unsplash.com/photo-1498335746477-0c73d7353a07?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                                    alt="Language Evolution"
-                                    class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent">
-                                </div>
-                                <div class="absolute top-4 right-4">
-                                    <span
-                                        class="px-3 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider"
-                                        style="background-color: var(--secondary); color: white;">Popular</span>
-                                </div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <h4
-                                        class="text-white font-bold text-xl story-title mb-1 tracking-tight leading-tight">
-                                        Language Evolution</h4>
-                                    <p class="text-white text-xs opacity-90 font-medium">6 stories</p>
-                                </div>
-                            </div>
-                        </a>
-
-                        <!-- Category 3 -->
-                        <a href="#" class="group">
-                            <div class="relative rounded-xl overflow-hidden shadow-lg h-96">
-                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                                    alt="Digital Revolution"
-                                    class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent">
-                                </div>
-                                <div class="absolute top-4 right-4">
-                                    <span
-                                        class="px-3 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider"
-                                        style="background-color: var(--secondary); color: white;">Hot Topic</span>
-                                </div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <h4
-                                        class="text-white font-bold text-xl story-title mb-1 tracking-tight leading-tight">
-                                        Digital Revolution</h4>
-                                    <p class="text-white text-xs opacity-90 font-medium">9 stories</p>
-                                </div>
-                            </div>
-                        </a>
-
-                        <!-- Category 4 -->
-                        <a href="#" class="group">
-                            <div class="relative rounded-xl overflow-hidden shadow-lg h-96">
-                                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                                    alt="Future Human"
-                                    class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent">
-                                </div>
-                                <div class="absolute top-4 right-4">
-                                    <span
-                                        class="px-3 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider"
-                                        style="background-color: var(--secondary); color: white;">New</span>
-                                </div>
-                                <div class="absolute bottom-0 left-0 right-0 p-6">
-                                    <h4
-                                        class="text-white font-bold text-xl story-title mb-1 tracking-tight leading-tight">
-                                        Future Human</h4>
-                                    <p class="text-white text-xs opacity-90 font-medium">7 stories</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <!-- Category Navigation Dots -->
-                    <div class="flex justify-center mt-8">
-                        <button class="w-2 h-2 rounded-full mx-1" style="background-color: var(--secondary);"></button>
-                        <button class="w-2 h-2 rounded-full mx-1"
-                            style="background-color: var(--primary); opacity: 0.3;"></button>
-                        <button class="w-2 h-2 rounded-full mx-1"
-                            style="background-color: var(--primary); opacity: 0.3;"></button>
-                    </div>
+              
                 </div>
 
-                <!-- Editor's Picks Section -->
-                <div class="mb-16">
-                    <div class="flex items-center mb-8">
-                        <h3 class="text-2xl font-bold story-title" style="color: var(--primary);">Editor's Picks</h3>
-                        <div class="ml-6 h-px flex-grow" style="background-color: var(--primary); opacity: 0.2;"></div>
-                    </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <!-- Left Column - Featured Editor's Pick -->
-                        <div class="md:col-span-1">
-                            <div class="bg-white rounded-xl overflow-hidden shadow-lg h-full flex flex-col">
-                                <div class="relative h-60 overflow-hidden">
-                                    <img src="https://images.unsplash.com/photo-1491466424936-e304919aada7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                                        alt="The First Fire" class="w-full h-full object-cover">
-                                    <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium"
-                                        style="background-color: var(--secondary); color: white;">Top Pick</div>
-                                </div>
-                                <div class="p-6 flex flex-col flex-grow">
-                                    <div class="mb-3">
-                                        <span class="text-sm font-medium px-3 py-1 rounded-full bg-gray-100"
-                                            style="color: var(--primary);">Early Humans</span>
-                                    </div>
-                                    <h4 class="text-xl font-bold story-title mb-4">The First Fire: How Flame Changed
-                                        Humanity Forever</h4>
-                                    <p class="text-gray-600 mb-4 flex-grow">The discovery that forever altered human
-                                        evolution — cooking with fire enabled better nutrition, social bonding, and
-                                        defense against predators.</p>
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-sm text-gray-500">15 min read</span>
-                                        <a href="#" class="text-sm font-medium" style="color: var(--secondary);">Read
-                                            Now →</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right Column - List of Editor's Picks -->
-                        <div class="md:col-span-2">
-                            <div class="bg-white rounded-xl overflow-hidden shadow-lg">
-                                <div class="divide-y">
-                                    <!-- List Item 1 -->
-                                    <div class="flex p-6">
-                                        <div class="mr-5 flex-shrink-0">
-                                            <div class="h-24 w-24 rounded-lg overflow-hidden">
-                                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
-                                                    alt="Digital Tribes" class="h-full w-full object-cover">
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <div class="mb-2">
-                                                <span class="text-xs font-medium px-2 py-1 rounded-full bg-gray-100"
-                                                    style="color: var(--primary);">Modern Evolution</span>
-                                            </div>
-                                            <h4 class="font-bold story-title mb-2">Digital Tribes: New Social Structures
-                                            </h4>
-                                            <p class="text-gray-600 text-sm mb-2">How digital technology is reshaping
-                                                human social connections and creating new forms of tribal organization.
-                                            </p>
-                                            <div class="mt-auto flex items-center justify-between">
-                                                <span class="text-xs text-gray-500">19 min read</span>
-                                                <a href="#" class="text-xs font-medium"
-                                                    style="color: var(--secondary);">Read Now →</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- List Item 2 -->
-                                    <div class="flex p-6">
-                                        <div class="mr-5 flex-shrink-0">
-                                            <div class="h-24 w-24 rounded-lg overflow-hidden">
-                                                <img src="https://images.unsplash.com/photo-1556196148-1fb724238998?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
-                                                    alt="The First Words" class="h-full w-full object-cover">
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <div class="mb-2">
-                                                <span class="text-xs font-medium px-2 py-1 rounded-full bg-gray-100"
-                                                    style="color: var(--primary);">Language Origins</span>
-                                            </div>
-                                            <h4 class="font-bold story-title mb-2">The First Words: Birth of Language
-                                            </h4>
-                                            <p class="text-gray-600 text-sm mb-2">How speech and symbolic communication
-                                                emerged, fundamentally changing how humans could share knowledge.</p>
-                                            <div class="mt-auto flex items-center justify-between">
-                                                <span class="text-xs text-gray-500">18 min read</span>
-                                                <a href="#" class="text-xs font-medium"
-                                                    style="color: var(--secondary);">Read Now →</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- List Item 3 -->
-                                    <div class="flex p-6">
-                                        <div class="mr-5 flex-shrink-0">
-                                            <div class="h-24 w-24 rounded-lg overflow-hidden">
-                                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
-                                                    alt="Digital Tribes" class="h-full w-full object-cover">
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-col">
-                                            <div class="mb-2">
-                                                <span class="text-xs font-medium px-2 py-1 rounded-full bg-gray-100"
-                                                    style="color: var(--primary);">Modern Evolution</span>
-                                            </div>
-                                            <h4 class="font-bold story-title mb-2">Digital Tribes: New Social Structures
-                                            </h4>
-                                            <p class="text-gray-600 text-sm mb-2">How digital technology is reshaping
-                                                human social connections and creating new forms of tribal organization.
-                                            </p>
-                                            <div class="mt-auto flex items-center justify-between">
-                                                <span class="text-xs text-gray-500">19 min read</span>
-                                                <a href="#" class="text-xs font-medium"
-                                                    style="color: var(--secondary);">Read Now →</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Special Series Banner - Refined -->
-                <div class="container mx-auto px-4 mb-16">
-                    <div class="relative rounded-xl overflow-hidden shadow-lg h-80 group">
-                        <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
-                            alt="The Mind's Evolution"
-                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
-                        <div class="absolute inset-0 flex flex-col justify-center p-8 md:p-12"
-                            style="background: linear-gradient(90deg, rgba(59, 44, 65, 0.9) 0%, rgba(59, 44, 65, 0.7) 50%, rgba(59, 44, 65, 0.5) 100%);">
-                            <span
-                                class="inline-block px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide mb-3 self-start"
-                                style="background-color: var(--secondary); color: white;">5-Part Series</span>
-                            <h3
-                                class="text-white font-bold text-2xl md:text-3xl story-title mb-3 max-w-xl tracking-tight">
-                                The Mind's Evolution:
-                                From Neural Networks to Consciousness</h3>
-                            <div class="flex items-center mb-4">
-                                <div class="flex -space-x-2 mr-3">
-                                    <img class="w-7 h-7 rounded-full border-2 border-white"
-                                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                                        alt="Author 1">
-                                    <img class="w-7 h-7 rounded-full border-2 border-white"
-                                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                                        alt="Author 2">
-                                </div>
-                                <span class="text-white text-sm">By Dr. James Liu & Dr. Emily Chen</span>
-                            </div>
-                            <a href="#"
-                                class="inline-flex items-center px-5 py-2 rounded-full text-white font-medium hover:shadow-md self-start"
-                                style="background-color: var(--secondary);">
-                                Start the Series
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+       
 
                 <!-- Latest Updates - Refined -->
                 <div class="container mx-auto px-4 mb-14">
                     <div class="flex items-center mb-6">
-                        <h3 class="text-xl font-bold story-title tracking-tight relative"
-                            style="color: var(--primary);">
-                            Latest Updates
-                            <span class="absolute -bottom-2 left-0 w-12 h-1"
-                                style="background-color: var(--secondary);"></span>
+                        <h3 class="text-xl font-bold story-title tracking-tight relative" style="color: var(--primary);">
+                            About Me
+                            <span class="absolute -bottom-2 left-0 w-12 h-1" style="background-color: var(--secondary);"></span>
                         </h3>
                         <div class="ml-6 h-px flex-grow" style="background-color: var(--primary); opacity: 0.15;"></div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                        <!-- Latest Update 1 -->
-                        <a href="#" class="group">
-                            <div class="relative rounded-lg overflow-hidden shadow-md h-64 group">
-                                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                                    alt="Digital Consciousness"
-                                    class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                                <div class="absolute top-3 right-3">
-                                    <span
-                                        class="px-2 py-0.5 rounded-full text-xs font-medium bg-white/20 backdrop-blur-sm text-white">1
-                                        week ago</span>
-                                </div>
-                                <div class="absolute bottom-0 left-0 right-0 p-4">
-                                    <h3 class="text-white font-bold text-lg story-title mb-1 tracking-tight">Digital
-                                        Consciousness</h3>
-                                    <div class="text-xs font-medium text-white opacity-90">24 min read</div>
-                                </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="flex flex-col justify-center">
+                            <h4 class="text-2xl font-bold mb-4" style="color: var(--primary);">Hi, I'm Akshada</h4>
+                            <p class="text-gray-600 mb-4">
+                                I'm a software developer passionate about creating elegant solutions to complex problems. With expertise in web development and system architecture, I strive to build applications that make a difference.
+                            </p>
+                            <p class="text-gray-600 mb-6">
+                                When I'm not coding, you'll find me writing about technology, exploring new development techniques, and contributing to open-source projects.
+                            </p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="px-6 py-2 rounded-full text-white font-medium" style="background-color: var(--secondary);">
+                                    Contact Me
+                                </a>
+                                <a href="#" class="px-6 py-2 rounded-full font-medium border" style="color: var(--primary); border-color: var(--primary);">
+                                    View Portfolio
+                                </a>
                             </div>
-                        </a>
+                        </div>
 
-                        <!-- Latest Update 2 -->
-                        <a href="#" class="group">
-                            <div class="relative rounded-lg overflow-hidden shadow-md h-64 group">
-                                <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                                    alt="Neural Pathways"
-                                    class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                                <div class="absolute top-3 right-3">
-                                    <span
-                                        class="px-2 py-0.5 rounded-full text-xs font-medium bg-white/20 backdrop-blur-sm text-white">4
-                                        days ago</span>
-                                </div>
-                                <div class="absolute bottom-0 left-0 right-0 p-4">
-                                    <h3 class="text-white font-bold text-lg story-title mb-1 tracking-tight">Neural
-                                        Pathways</h3>
-                                    <div class="text-xs font-medium text-white opacity-90">23 min read</div>
-                                </div>
-                            </div>
-                        </a>
-
-                        <!-- Latest Update 3 -->
-                        <a href="#" class="group">
-                            <div class="relative rounded-lg overflow-hidden shadow-md h-64 group">
-                                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                                    alt="Digital Consciousness"
-                                    class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                                <div class="absolute top-3 right-3">
-                                    <span
-                                        class="px-2 py-0.5 rounded-full text-xs font-medium bg-white/20 backdrop-blur-sm text-white">1
-                                        week ago</span>
-                                </div>
-                                <div class="absolute bottom-0 left-0 right-0 p-4">
-                                    <h3 class="text-white font-bold text-lg story-title mb-1 tracking-tight">Digital
-                                        Consciousness</h3>
-                                    <div class="text-xs font-medium text-white opacity-90">24 min read</div>
-                                </div>
-                            </div>
-                        </a>
+                        <div class="relative rounded-lg overflow-hidden shadow-md">
+                            <img src="profile.jpg" alt="Akshada Pawar" class="w-full h-full object-cover">
+                        </div>
                     </div>
                 </div>
 
-                <!-- All Stories List - Refined -->
-                <div class="container mx-auto px-4 mb-16">
-                    <h2 class="text-2xl font-bold mb-6 story-title tracking-tight relative"
-                        style="color: var(--primary);">
-                        All Stories
-                        <span class="absolute -bottom-2 left-0 w-12 h-1"
-                            style="background-color: var(--secondary);"></span>
-                    </h2>
-
-                    <div class="space-y-4">
-                        <!-- List Item 1 -->
-                        <div
-                            class="group list-card flex rounded-lg overflow-hidden shadow-sm bg-white hover:shadow-md transition-shadow">
-                            <div class="w-1/3 relative">
-                                <img src="https://images.unsplash.com/photo-1593642532744-d377ab507dc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                                    alt="Agricultural Revolution"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                            </div>
-                            <div class="w-2/3 p-5 flex flex-col justify-center">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="text-xs font-medium px-2 py-0.5 rounded-full"
-                                        style="background-color: var(--light-accent); color: var(--primary);">Agriculture</span>
-                                    <span class="text-xs text-gray-500">17 min read</span>
-                                </div>
-                                <h3 class="font-bold text-lg story-title mb-1 tracking-tight"
-                                    style="color: var(--primary);">Agricultural Revolution</h3>
-                                <p class="text-gray-600 text-sm">The dawn of farming that changed human societies
-                                    forever</p>
-                            </div>
-                        </div>
-
-                        <!-- List Item 2 -->
-                        <div
-                            class="group list-card flex rounded-lg overflow-hidden shadow-sm bg-white hover:shadow-md transition-shadow">
-                            <div class="w-1/3 relative">
-                                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                                    alt="Digital Consciousness"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                            </div>
-                            <div class="w-2/3 p-5 flex flex-col justify-center">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="text-xs font-medium px-2 py-0.5 rounded-full"
-                                        style="background-color: var(--light-accent); color: var(--primary);">Technology</span>
-                                    <span class="text-xs text-gray-500">24 min read</span>
-                                </div>
-                                <h3 class="font-bold text-lg story-title mb-1 tracking-tight"
-                                    style="color: var(--primary);">Digital Consciousness</h3>
-                                <p class="text-gray-600 text-sm">The emergence of artificial sentience in the digital
-                                    age</p>
-                            </div>
-                        </div>
-
-                        <!-- List Item 3 -->
-                        <div
-                            class="group list-card flex rounded-lg overflow-hidden shadow-sm bg-white hover:shadow-md transition-shadow">
-                            <div class="w-1/3 relative">
-                                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                                    alt="Cosmic Humans"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                                <div
-                                    class="absolute top-2 right-2 bg-yellow-400 text-xs font-bold text-white px-2 py-0.5 rounded">
-                                    NEW</div>
-                            </div>
-                            <div class="w-2/3 p-5 flex flex-col justify-center">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="text-xs font-medium px-2 py-0.5 rounded-full"
-                                        style="background-color: var(--light-accent); color: var(--primary);">Space</span>
-                                    <span class="text-xs text-gray-500">19 min read</span>
-                                </div>
-                                <h3 class="font-bold text-lg story-title mb-1 tracking-tight"
-                                    style="color: var(--primary);">Cosmic Humans</h3>
-                                <p class="text-gray-600 text-sm">How space exploration will change human physiology</p>
-                            </div>
-                        </div>
-
-                        <!-- List Item 4 -->
-                        <div
-                            class="group list-card flex rounded-lg overflow-hidden shadow-sm bg-white hover:shadow-md transition-shadow">
-                            <div class="w-1/3 relative">
-                                <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                                    alt="Language of Machines"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                            </div>
-                            <div class="w-2/3 p-5 flex flex-col justify-center">
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="text-xs font-medium px-2 py-0.5 rounded-full"
-                                        style="background-color: var(--light-accent); color: var(--primary);">Communication</span>
-                                    <span class="text-xs text-gray-500">21 min read</span>
-                                </div>
-                                <h3 class="font-bold text-lg story-title mb-1 tracking-tight"
-                                    style="color: var(--primary);">Language of Machines</h3>
-                                <p class="text-gray-600 text-sm">The evolution of human-computer communication</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- View All Button -->
-                    <div class="mt-6 text-center">
-                        <a href="#"
-                            class="inline-block px-5 py-2 rounded-full text-sm font-medium transition-all hover:shadow-md"
-                            style="background-color: var(--light-accent); color: var(--primary);">
-                            View All Stories
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Collections Section - Refined -->
-                <div class="container mx-auto px-4 py-10 border-t border-gray-200">
-                    <h2 class="text-2xl font-bold mb-6 story-title tracking-tight relative"
-                        style="color: var(--primary);">
-                        Story Collections
-                        <span class="absolute -bottom-2 left-0 w-12 h-1"
-                            style="background-color: var(--secondary);"></span>
-                    </h2>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                        <!-- Collection 1 -->
-                        <a href="#" class="block">
-                            <div class="p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow"
-                                style="background-color: var(--light-accent);">
-                                <div class="flex items-center mb-2">
-                                    <span class="w-8 h-8 flex items-center justify-center rounded-full mr-2 text-white"
-                                        style="background-color: var(--primary);">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
-                                            fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </span>
-                                    <h3 class="font-bold text-base story-title tracking-tight"
-                                        style="color: var(--primary);">Early Human Origins</h3>
-                                </div>
-                                <p class="text-xs text-gray-600 mb-2">From our primate ancestors to first tools</p>
-                                <div class="flex justify-between items-center">
-                                    <p class="text-xs font-medium" style="color: var(--secondary);">5 stories</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" style="color: var(--secondary);">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </a>
-
-                        <!-- Collection 2 -->
-                        <a href="#" class="block">
-                            <div class="p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow"
-                                style="background-color: var(--light-accent);">
-                                <div class="flex items-center mb-2">
-                                    <span class="w-8 h-8 flex items-center justify-center rounded-full mr-2 text-white"
-                                        style="background-color: var(--primary);">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
-                                            fill="currentColor">
-                                            <path
-                                                d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
-                                        </svg>
-                                    </span>
-                                    <h3 class="font-bold text-base story-title tracking-tight"
-                                        style="color: var(--primary);">Cultural Revolution</h3>
-                                </div>
-                                <p class="text-xs text-gray-600 mb-2">Language, art, and social structures</p>
-                                <div class="flex justify-between items-center">
-                                    <p class="text-xs font-medium" style="color: var(--secondary);">4 stories</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" style="color: var(--secondary);">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </a>
-
-                        <!-- Collection 3 -->
-                        <a href="#" class="block">
-                            <div class="p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow"
-                                style="background-color: var(--light-accent);">
-                                <div class="flex items-center mb-2">
-                                    <span class="w-8 h-8 flex items-center justify-center rounded-full mr-2 text-white"
-                                        style="background-color: var(--primary);">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
-                                            fill="currentColor">
-                                            <path
-                                                d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z" />
-                                        </svg>
-                                    </span>
-                                    <h3 class="font-bold text-base story-title tracking-tight"
-                                        style="color: var(--primary);">Future Evolution</h3>
-                                </div>
-                                <p class="text-xs text-gray-600 mb-2">How humans might evolve in coming centuries</p>
-                                <div class="flex justify-between items-center">
-                                    <p class="text-xs font-medium" style="color: var(--secondary);">3 stories</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" style="color: var(--secondary);">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+ 
             </div>
         </section>
     </main>

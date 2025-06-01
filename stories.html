@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stories - Akshada Pawar</title>
+    <meta name="description" content="Explore immersive stories from primates to AI.">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Dancing+Script:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+      :root {
+        --primary: #3b2c41;
+        --secondary: #b86a35;
+        --light-accent: #f7f3e9;
+        --dark-accent: #1f1a25;
+        --text: #2d2d2d;
+      }
+
+      body {
+          font-family: 'Nunito', sans-serif;
+          color: var(--text);
+          background-color: white;
+          position: relative;
+          padding: 100px;
+          box-sizing: border-box;
+      }
+
+      body::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border: 100px solid transparent;
+          border-image: linear-gradient(to right, 
+              rgba(45, 45, 45, 0.2), 
+              rgba(75, 75, 75, 0.2), 
+              rgba(45, 45, 45, 0.2)
+          ) 1;
+          border-image-slice: 100;
+          pointer-events: none;
+          z-index: 10;
+      }
+
+      .story-title {
+          font-family: 'Playfair Display', serif;
+      }
+
+      .logo-text {
+          font-family: 'Dancing Script', cursive;
+      }
+
+      .story-card {
+          transition: transform 0.2s ease;
+          height: 420px;
+      }
+
+      .story-card:hover {
+          transform: translateY(-5px);
+      }
+
+      .menu-item {
+          position: relative;
+      }
+
+      .menu-item:after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: -2px;
+          left: 0;
+          background-color: var(--secondary);
+          transition: width 0.3s;
+      }
+
+      .menu-item:hover:after {
+          width: 100%;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+          .story-card,
+          .menu-item:after {
+              transition: none;
+          }
+          
+          .story-card:hover {
+              transform: none;
+          }
+          
+          .menu-item:hover:after {
+              width: 0;
+          }
+      }
+    </style>
+</head>
+
+<body>
+    <!-- Header with logo and menu -->
+    <header class="py-4 border-b border-gray-100 sticky top-0 bg-white z-10">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="logo-text text-2xl font-bold" style="color: var(--primary);">
+                Akshada<span style="color: var(--secondary);">Pawar</span>
+            </a>
+            <nav>
+                <ul class="flex space-x-8">
+                    <li><a href="#" class="menu-item font-medium">Home</a></li>
+                    <li><a href="#" class="menu-item font-medium text-secondary" style="color: var(--secondary);">Stories</a></li>
+                    <li><a href="#" class="menu-item font-medium">Collections</a></li>
+                    <li><a href="#" class="menu-item font-medium">About</a></li>
+                    <li><a href="#" class="menu-item font-medium">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+        <!-- Stories Section -->
+        <section class="py-16 bg-gradient-to-b from-white to-gray-50">
+            <div class="container mx-auto px-4">
+                <!-- Stories Header -->
+                <div class="mb-12 text-center">
+                    <h1 class="text-4xl font-bold story-title mb-4" style="color: var(--primary);">Explore Our Stories</h1>
+                    <p class="max-w-3xl mx-auto text-gray-600">Immerse yourself in captivating narratives that chronicle the journey of human evolution, technological breakthroughs, and the fascinating intersections of history and innovation.</p>
+                </div>
+
+                <!-- Filter Categories -->
+                <div class="mb-12">
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button class="px-5 py-2 rounded-full text-white font-medium" style="background-color: var(--primary);">All Stories</button>
+                        <button class="px-5 py-2 rounded-full font-medium border hover:bg-gray-50" style="color: var(--primary); border-color: var(--primary);">Technology</button>
+                        <button class="px-5 py-2 rounded-full font-medium border hover:bg-gray-50" style="color: var(--primary); border-color: var(--primary);">Evolution</button>
+                        <button class="px-5 py-2 rounded-full font-medium border hover:bg-gray-50" style="color: var(--primary); border-color: var(--primary);">History</button>
+                        <button class="px-5 py-2 rounded-full font-medium border hover:bg-gray-50" style="color: var(--primary); border-color: var(--primary);">Future</button>
+                        <button class="px-5 py-2 rounded-full font-medium border hover:bg-gray-50" style="color: var(--primary); border-color: var(--primary);">Society</button>
+                    </div>
+                </div>
+
+                <!-- Stories Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    <!-- Story Card 1 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-1 story-card">
+                        <img src="oddman.png" alt="Digital Revolution" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-2">
+                                <span class="text-xs font-semibold uppercase tracking-wider px-2 py-1 rounded" style="background-color: var(--light-accent); color: var(--secondary);">Technology</span>
+                                <span class="ml-2 text-xs text-gray-500">May 12, 2025</span>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2" style="color: var(--primary);">The Digital Revolution</h3>
+                            <p class="text-gray-600 text-sm mb-4">Exploring how emerging technologies are reshaping society, business, and human potential in unprecedented ways.</p>
+                            <a href="#" class="inline-block text-sm font-medium" style="color: var(--secondary);">Read More →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Story Card 2 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-1 story-card">
+                        <img src="oddman.png" alt="Evolutionary Steps" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-2">
+                                <span class="text-xs font-semibold uppercase tracking-wider px-2 py-1 rounded" style="background-color: var(--light-accent); color: var(--secondary);">Evolution</span>
+                                <span class="ml-2 text-xs text-gray-500">May 8, 2025</span>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2" style="color: var(--primary);">Evolutionary Steps</h3>
+                            <p class="text-gray-600 text-sm mb-4">Tracing the remarkable journey from early primates to modern humans through key evolutionary adaptations.</p>
+                            <a href="#" class="inline-block text-sm font-medium" style="color: var(--secondary);">Read More →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Story Card 3 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-1 story-card">
+                        <img src="oddman.png" alt="The Cognitive Revolution" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-2">
+                                <span class="text-xs font-semibold uppercase tracking-wider px-2 py-1 rounded" style="background-color: var(--light-accent); color: var(--secondary);">History</span>
+                                <span class="ml-2 text-xs text-gray-500">May 5, 2025</span>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2" style="color: var(--primary);">The Cognitive Revolution</h3>
+                            <p class="text-gray-600 text-sm mb-4">How language and collective imagination transformed early humans into the dominant species on the planet.</p>
+                            <a href="#" class="inline-block text-sm font-medium" style="color: var(--secondary);">Read More →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Story Card 4 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-1 story-card">
+                        <img src="oddman.png" alt="AI Horizons" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-2">
+                                <span class="text-xs font-semibold uppercase tracking-wider px-2 py-1 rounded" style="background-color: var(--light-accent); color: var(--secondary);">Future</span>
+                                <span class="ml-2 text-xs text-gray-500">April 29, 2025</span>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2" style="color: var(--primary);">AI Horizons</h3>
+                            <p class="text-gray-600 text-sm mb-4">Examining the potential futures of human-AI integration and the evolving relationship between creators and creation.</p>
+                            <a href="#" class="inline-block text-sm font-medium" style="color: var(--secondary);">Read More →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Story Card 5 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-1 story-card">
+                        <img src="oddman.png" alt="The Social Mind" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-2">
+                                <span class="text-xs font-semibold uppercase tracking-wider px-2 py-1 rounded" style="background-color: var(--light-accent); color: var(--secondary);">Society</span>
+                                <span class="ml-2 text-xs text-gray-500">April 22, 2025</span>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2" style="color: var(--primary);">The Social Mind</h3>
+                            <p class="text-gray-600 text-sm mb-4">Investigating how human cooperation and social structures have evolved to create complex civilizations.</p>
+                            <a href="#" class="inline-block text-sm font-medium" style="color: var(--secondary);">Read More →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Story Card 6 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-1 story-card">
+                        <img src="oddman.png" alt="Agricultural Transformation" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center mb-2">
+                                <span class="text-xs font-semibold uppercase tracking-wider px-2 py-1 rounded" style="background-color: var(--light-accent); color: var(--secondary);">History</span>
+                                <span class="ml-2 text-xs text-gray-500">April 18, 2025</span>
+                            </div>
+                            <h3 class="font-bold text-xl mb-2" style="color: var(--primary);">Agricultural Transformation</h3>
+                            <p class="text-gray-600 text-sm mb-4">The revolutionary shift from hunter-gatherer societies to agricultural communities that changed humanity forever.</p>
+                            <a href="#" class="inline-block text-sm font-medium" style="color: var(--secondary);">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-center mt-8 mb-8">
+                    <nav class="flex items-center space-x-2">
+                        <a href="#" class="px-3 py-1 rounded border" style="color: var(--primary); border-color: var(--primary);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="#" class="px-3 py-1 rounded text-white" style="background-color: var(--primary);">1</a>
+                        <a href="#" class="px-3 py-1 rounded hover:bg-gray-100">2</a>
+                        <a href="#" class="px-3 py-1 rounded hover:bg-gray-100">3</a>
+                        <span class="px-1">...</span>
+                        <a href="#" class="px-3 py-1 rounded hover:bg-gray-100">8</a>
+                        <a href="#" class="px-3 py-1 rounded border" style="color: var(--primary); border-color: var(--primary);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold story-title mb-4" style="color: var(--primary);">Join Our Newsletter</h2>
+                    <p class="text-gray-600 mb-8">Stay updated with our latest stories and collections. No spam, just thoughtful content delivered straight to your inbox.</p>
+                    <div class="flex flex-col sm:flex-row gap-2 justify-center">
+                        <input type="email" placeholder="Your email address" class="px-5 py-3 rounded-lg border focus:outline-none focus:ring-2" style="min-width: 300px; border-color: var(--primary); focus:ring-color: var(--secondary);">
+                        <button class="px-6 py-3 rounded-lg text-white font-medium" style="background-color: var(--secondary);">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Enhanced Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 pt-12 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="logo-text text-xl font-bold mb-4" style="color: var(--primary);">
+                        Akshada<span style="color: var(--secondary);">Pawar</span>
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-4">Immersive stories chronicling the journey of human evolution
+                        from our primate ancestors to our potential AI-integrated future.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Explore</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-gray-900">Featured Stories</a></li>
+                        <li><a href="#" class="hover:text-gray-900">New Releases</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Collections</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Authors</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">About</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-gray-900">Our Mission</a></li>
+                        <li><a href="#" class="hover:text-gray-900">The Team</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Contributors</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-gray-900">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Newsletter</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Instagram</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
+                <p>© 2025 AkshadaPawar. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
